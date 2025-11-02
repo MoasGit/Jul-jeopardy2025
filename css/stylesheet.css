@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #04361d;
+            --red: #a51010;
+            --white: #e9e9e9;
+            --grey: #777676;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            background: var(--red);
+            color: var(--white);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Snöflingor animation */
+        .snowflake {
+    position: fixed;
+    top: -10px;
+    color: #fff;
+    font-size: 1em;
+    animation: fall linear infinite;
+    z-index: 0;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+        body.snow-active .snowflake {
+        display: block;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 180px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: "Mountains of Christmas", serif;
+            text-align: center;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* Team Setup skärm */
+        #team-setup {
+            font-family: "Mountains of Christmas", serif;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        #team-setup h2 {
+            color: var(--red);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .team-input-group {
+            margin-bottom: 15px;
+        }
+
+        .team-input-group input {
+            
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid var(--white);
+            border-radius: 8px;
+            background: #ffffff;
+            color: #333;
+            font-family: "Roboto", sans-serif;
+        }
+
+        button {
+            background: var(--green);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 400;
+            font-family: "Roboto", sans-serif;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Spelbrädet */
+        #game-board {
+            display: none;
+        }
+
+        /* Scoreboard */
+        .scoreboard {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .team-score {
+            border: none;
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .team-score h3 {
+            color: var(--white);
+            margin-bottom: 5px;
+            font-size: 1.4em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1,5px;
+        }
+
+        .team-score p {
+            font-size: 1.3em;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        /* Jeopardy brädet */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-header {
+            background: var(--green);
+            padding: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.1em;
+            border-radius: 9px;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .question-cell {
+            background: var(--white);
+            color: #000000;
+            padding: 40px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-cell:hover:not(.answered) {
+            background: var(--white);
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .question-cell.answered {
+            background: #9e9e9e;
+            color: var(--white);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Frågvy */
+        .question-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+    .question-content {
+            background: var(--white);
+            border: none;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: #1a1a1a;
+        }
+
+        .question-points {
+            color: var(--red);
+            font-size: 2em;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .question-text {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .answer-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .answer-text {
+            font-size: 1.5em;
+            color: var(--red);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .team-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .team-button {
+            background: var(--green);
+            padding: 12px 25px;
+        }
+
+        .team-button:hover {
+            
+        }
+
+        .no-points-button {
+            background: var(--grey);
+        }
+
+        .no-points-button:hover {
+            
+        }
+
+        #show-answer-btn {
+            background: var(--green);
+            margin-bottom: 10px;
+            margin: 0 auto 10px;
+            display: block;
+            width: fit-content; 
+        }
+
+        .reset-button {
+            background: #1a1a1a;
+            margin-top: 20px;
+        }
+
+        .reset-button:hover {
+            background: #000000;
+        }
+
+        .custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: #1a1a1a;
+}
+
+.custom-modal-content p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+.custom-modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.cancel-button {
+    background: var(--grey);
+}
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .board {
+                gap: 5px;
+            }
+
+            .question-cell {
+                padding: 20px;
+                font-size: 1.5em;
+            }
+
+            .category-header {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+
+            .question-text {
+                font-size: 1.3em;
+            }
+        }

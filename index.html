@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ett juligt jeopardy</title>
+    <link rel="stylesheet" href="css/stylesheet.css" />
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Jeopardy Julspel</h1>
+        <img src="img/jultomte1.png" alt="Bild på jultomte" />
+      </div>
+
+      <!-- Team Setup -->
+      <div id="team-setup">
+        <h2>Skapa lag</h2>
+        <div id="team-inputs">
+          <div class="team-input-group">
+            <input type="text" placeholder="Lag 1" class="team-name-input" />
+          </div>
+          <div class="team-input-group">
+            <input type="text" placeholder="Lag 2" class="team-name-input" />
+          </div>
+        </div>
+        <div class="button-group">
+          <button onclick="addTeamInput()">+ Lägg till lag</button>
+          <button onclick="startGame()">
+            Starta spel <a href="jeopardy.html"></a>
+          </button>
+        </div>
+      </div>
+
+      <!-- Spelbräde -->
+      <div id="game-board">
+        <!-- Scoreboard -->
+        <div class="scoreboard" id="scoreboard"></div>
+
+        <!-- Kategorirubriker och frågor -->
+        <div class="board" id="board"></div>
+
+        <div style="text-align: center">
+          <button class="reset-button" onclick="resetGame()">
+            Nollställ spel
+          </button>
+          <button class="reset-button" onclick="backToSetup()">
+            Tillbaka till start
+          </button>
+        </div>
+      </div>
+
+      <!-- Frågmodal -->
+      <div class="question-modal" id="question-modal">
+        <div class="question-frame">
+          <div class="question-content">
+            <div class="question-points" id="modal-points"></div>
+            <div class="question-text" id="modal-question"></div>
+
+            <button id="show-answer-btn" onclick="showAnswer()">
+              Visa svar
+            </button>
+
+            <div
+              class="answer-section"
+              id="answer-section"
+              style="display: none"
+            >
+              <div class="answer-text" id="modal-answer"></div>
+              <p style="margin-bottom: 15px; font-size: 1.1em">
+                Vilket lag fick rätt?
+              </p>
+              <div class="team-buttons" id="team-buttons"></div>
+              <button class="no-points-button" onclick="noTeamScored()">
+                Ingen fick poäng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="custom-modal" id="custom-modal">
+      <div class="custom-modal-content">
+        <p id="custom-modal-message"></p>
+        <div class="custom-modal-buttons" id="custom-modal-buttons"></div>
+      </div>
+    </div>
+  </body>
+</html>
